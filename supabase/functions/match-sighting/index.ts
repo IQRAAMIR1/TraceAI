@@ -22,7 +22,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY")!;
-const GEMINI_MODEL = "gemini-2.5-flash";
+const GEMINI_MODEL = "gemini-3.6-flash";
 const GEMINI_URL =
   `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
@@ -85,6 +85,8 @@ interface SightingRow {
   location_text: string | null;
   description: string | null;
   photo_path: string | null;
+  current_status: string | null;
+  current_location_detail: string | null;
 }
 
 interface GeminiResult {
@@ -486,6 +488,7 @@ Deno.serve(async (req: Request) => {
     );
   }
 
+
   // 5. Notify the reporter if the score clears the threshold.
   const threshold = notifyThreshold(matchType);
   if (best.score >= threshold) {
@@ -504,13 +507,26 @@ Deno.serve(async (req: Request) => {
         `[match-sighting] Match saved (${matchRow.id}) but case ${best.candidate.id} has no reporter_id — skipping notification`,
       );
     } else {
+      const locationLine = typedSighting.location_text
+        ? ` near ${typedSighting.location_text}`
+        : "";
+
+      const currentStatusLine =
+        typedSighting.current_status === "at_police_station"
+          ? ` The person has been taken to ${typedSighting.current_location_detail || "a police station"}.`
+          : typedSighting.current_status === "at_hospital"
+          ? ` The person has been taken to ${typedSighting.current_location_detail || "a hospital"}.`
+          : typedSighting.current_status === "with_reporter"
+          ? ` The reporter says the person is currently with them at ${typedSighting.current_location_detail || "an unspecified location"}.`
+          : "";
+
       const { error: notifyError } = await supabase.from("notifications").insert({
         user_id: caseRow.reporter_id,
         person_id: best.candidate.id,
         sighting_id: typedSighting.id,
         match_id: matchRow.id,
         title: `New ${label} match for ${caseRow.full_name}`,
-        body: `A sighting has been matched to this case with a ${label} confidence score of ${best.score.toFixed(0)}%.`,
+        body: `A sighting was reported${locationLine} with a ${label} confidence score of ${best.score.toFixed(0)}%.${currentStatusLine}`,
       });
       if (notifyError) {
         console.error(
