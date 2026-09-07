@@ -58,7 +58,7 @@ export default function Browse() {
   return (
     <div className="page bp-page">
       <header className="hero-dark" style={{ paddingBottom: '2rem' }}>
-        <PakistanMotif />
+       
         <div className="container">
           <Navbar />
           <h1 className="bp-hero-title">Browse Missing Persons</h1>

@@ -63,7 +63,7 @@ export default function HotspotMap() {
   return (
     <div className="page">
       <header className="hero-dark" style={{ paddingBottom: '2rem' }}>
-        <PakistanMotif />
+      
         <div className="container">
           <Navbar />
           <h1 style={{ fontSize: '1.8rem', margin: '1.25rem 0 0' }}>Hotspot Map</h1>

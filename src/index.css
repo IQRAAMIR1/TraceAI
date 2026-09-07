@@ -159,7 +159,11 @@ img {
 
 .hero-dark .container {
   position: relative;
-  z-index: 1;
+  /* Must outrank later sibling stacking contexts on the page (e.g.
+     .auth-sheet, .card, .bottom-nav) so the mobile nav panel/backdrop
+     rendered inside Navbar — nested here — always paints on top when
+     open, instead of being trapped under this local stacking context. */
+  z-index: 60;
 }
 
 .hero-headline {
@@ -448,6 +452,16 @@ img {
 @media (min-width: 560px) {
   .field-row-2 {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* On narrow phones, still show these as two columns instead of
+   stacking (which was creating an oversized gap above the second
+   field) — just with a tighter gap so both fit comfortably. */
+@media (max-width: 559px) {
+  .field-row-2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
   }
 }
 
@@ -1404,5 +1418,3 @@ input[type="datetime-local"].input {
     padding-left: 0.75rem;
   }
 }
-
-

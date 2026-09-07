@@ -162,7 +162,7 @@ export default function Sighting() {
         </div>
       </header>
 
-      <div className="container-narrow" style={{ marginTop: '-1.5rem', paddingBottom: '3rem' }}>
+      <div className="container-narrow auth-sheet" style={{ paddingTop: '0.75rem' }}>
         <form onSubmit={handleSubmit}>
           <div className="card" style={{ marginBottom: '1.25rem' }}>
             <div className="field">
