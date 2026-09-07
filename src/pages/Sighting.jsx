@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, UploadCloud, ShieldCheck } from 'lucide-react';
 import Navbar from '../components/Navbar';
-import PakistanMotif from '../components/PakistanMotif';
 import { supabase } from '../lib/supabaseClient';
 import { geocodeLocation } from '../lib/geocode';
 
@@ -157,7 +156,6 @@ export default function Sighting() {
   return (
     <div className="page">
       <header className="hero-dark" style={{ paddingBottom: '2.5rem' }}>
-        <PakistanMotif />
         <div className="container">
           <Navbar />
           <h1 style={{ fontSize: '1.8rem', margin: '1.5rem 0 0' }}>Submit a Sighting</h1>
@@ -181,7 +179,7 @@ export default function Sighting() {
                 ))}
               </select>
             </div>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
+           <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem', marginTop: '0.75rem' }}>
               <input
                 type="checkbox"
                 checked={isGeneral}
@@ -252,6 +250,7 @@ export default function Sighting() {
               <label>Description (what did you see?) <span className="required">*</span></label>
               <textarea
                 className="input"
+                rows={4}
                 placeholder="Describe what you saw (clothing, condition, companions, direction, etc.)"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}

@@ -108,7 +108,6 @@ export default function Auth() {
   return (
     <div className="page">
       <header className="hero-dark" style={{ paddingBottom: '4rem' }}>
-        <PakistanMotif />
         <div className="container">
           <Navbar />
           <h1 style={{ fontSize: '2rem', margin: '2rem 0 0.4rem' }}>

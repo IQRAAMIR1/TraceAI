@@ -119,9 +119,11 @@ img {
   .has-mobile-bg .pk-motif {
     display: none;
   }
+
   .has-mobile-bg .hero-content {
     max-width: 72% !important;
   }
+
   .has-mobile-bg .hero-mobile-bg {
     display: block;
     position: absolute;
@@ -141,6 +143,7 @@ img {
   .has-desktop-bg .pk-motif {
     display: none;
   }
+
   .has-desktop-bg .hero-desktop-bg {
     display: block;
     position: absolute;
@@ -455,9 +458,12 @@ textarea.input {
   padding: 0.95rem 1rem;
   border-radius: 14px;
   border: 1.5px solid transparent;
+  background-clip: padding-box;
   background: var(--color-mint-bg);
   font-size: 0.95rem;
   color: var(--color-ink);
+  -webkit-appearance: none;
+  appearance: none;
   transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -571,10 +577,12 @@ textarea.input {
   .auth-hero {
     padding-bottom: 2.25rem;
   }
+
   .auth-title {
     font-size: 1.55rem;
     margin-top: 1.25rem;
   }
+
   .auth-subtitle {
     font-size: 0.85rem;
   }
@@ -586,14 +594,15 @@ textarea.input {
   margin-top: -1.25rem;
   position: relative;
   z-index: 1;
-  padding: 1.75rem 0 3rem;
+  padding-top: 1.75rem;
+  padding-bottom: 3rem;
   flex: 1;
   box-shadow: 0 -8px 24px rgba(13, 40, 24, 0.06);
 }
 
 @media (max-width: 480px) {
   .auth-sheet {
-    padding: 1.5rem 0 2.5rem;
+    padding-bottom: 2.5rem;
   }
 }
 
@@ -876,6 +885,7 @@ textarea.input {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media (min-width: 960px) {
   .feature-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -894,11 +904,13 @@ textarea.input {
   .feature-card {
     padding: 1.15rem;
   }
+
   .feature-card .icon-badge {
     width: 40px;
     height: 40px;
     border-radius: 12px;
   }
+
   .feature-card .icon-badge svg {
     width: 18px;
     height: 18px;
@@ -1023,6 +1035,7 @@ textarea.input {
   from {
     transform: translateX(100%);
   }
+
   to {
     transform: translateX(0);
   }
@@ -1079,14 +1092,17 @@ textarea.input {
     height: 54px;
     margin-bottom: 0.75rem;
   }
+
   .step-circle svg {
     width: 20px;
     height: 20px;
   }
+
   .steps-grid h3 {
     font-size: 0.95rem;
     margin: 0 0 0.3rem;
   }
+
   .steps-grid p {
     font-size: 0.82rem;
   }
@@ -1333,6 +1349,7 @@ textarea.input {
     height: 14px;
   }
 }
+
 /* ------------------------------------------------------------
    Tighten section spacing on mobile (How it Works / Features)
    ------------------------------------------------------------ */
@@ -1370,3 +1387,22 @@ textarea.input {
     margin: 1rem 0 0.6rem;
   }
 }
+
+/* ------------------------------------------------------------
+   Date/time inputs — prevent overflow on narrow mobile screens
+   ------------------------------------------------------------ */
+input[type="date"].input,
+input[type="datetime-local"].input {
+  font-size: 0.85rem;
+  padding-right: 0.5rem;
+}
+
+@media (max-width: 400px) {
+  input[type="date"].input,
+  input[type="datetime-local"].input {
+    font-size: 0.78rem;
+    padding-left: 0.75rem;
+  }
+}
+
+
