@@ -16,17 +16,19 @@ import {
 import Navbar from '../components/Navbar';
 import PakistanMotif from '../components/PakistanMotif';
 import pakistanHeroMobile from '../assets/pakistan-hero-mobile.jpg';
+import pakistanHeroDesktop from '../assets/pakistan-hero-desktop.jpg';
 
 export default function Landing() {
   return (
     <div className="page">
-      <header className="hero-dark has-mobile-bg">
+      <header className="hero-dark has-mobile-bg has-desktop-bg">
         <img src={pakistanHeroMobile} alt="" className="hero-mobile-bg" aria-hidden="true" />
+        <img src={pakistanHeroDesktop} alt="" className="hero-desktop-bg" aria-hidden="true" />
         <PakistanMotif />
         <div className="container">
           <Navbar />
 
-          <div style={{ maxWidth: 560, marginTop: '1.5rem' }}>
+          <div className="hero-content" style={{ maxWidth: 560, marginTop: '1.5rem' }}>
             <h1 className="hero-headline" style={{ lineHeight: 1.15, margin: '0 0 1rem' }}>
               Find Missing People. <span style={{ color: 'var(--color-accent-light)' }}>Faster.</span>
               <br />
@@ -54,14 +56,14 @@ export default function Landing() {
               <ShieldCheck size={16} /> Your information is secure and confidential
             </p>
 
-            <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginTop: '1.5rem', fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            <div className="trust-badges">
+              <span>
                 <ShieldCheck size={16} /> Trusted by Families
               </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span>
                 <Users size={16} /> NGOs
               </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span>
                 <Landmark size={16} /> Law Enforcement
               </span>
             </div>
@@ -69,9 +71,9 @@ export default function Landing() {
         </div>
       </header>
 
-      <section className="section-light">
+      <section className="section-light howworks-section">
         <div className="container" style={{ textAlign: 'center' }}>
-          <h2 style={{ fontSize: '1.6rem' }}>How TraceAI Works</h2>
+          <h2 className="section-heading">How TraceAI Works</h2>
           <div className="steps-grid">
             <Step icon={<ClipboardEdit size={26} />} num={1} title="Report" text="Report a missing person with details and photo" />
             <Step icon={<Eye size={26} />} num={2} title="Sightings Submitted" text="Citizens & NGOs submit possible sightings" />
@@ -83,7 +85,7 @@ export default function Landing() {
 
       <section className="section-light" style={{ paddingTop: 0 }}>
         <div className="container">
-          <h2 style={{ fontSize: '1.6rem', textAlign: 'center' }}>Powerful AI Features</h2>
+          <h2 className="section-heading">Powerful AI Features</h2>
           <div className="feature-grid">
             <FeatureCard
               icon={<Brain size={22} />}
